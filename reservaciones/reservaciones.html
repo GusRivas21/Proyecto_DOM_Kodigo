@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Reservaciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <img src="../img/logo.webp" alt="" class="me-2" style="width: 60px; height: 60px;">
+            <a class="navbar-brand" href="#">El Mundo de los Exploradores</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Destinos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="reservaciones/reservaciones.html">Reservaciones</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER -->
+    <header class="py-5 text-center" style="background-color: #bbdbf0;">
+        <div class="container">
+            <h1 class="display-4">Explora el mundo con nosotros</h1>
+                <p class="lead">Encuentra los mejores destinos y vive experiencias inolvidables.</p>
+        </div>
+    </header>
+    
+    <!-- FORMULARIO DE RESERVACIONES -->
+    <main class="container py-5">
+        <!-- Título -->
+        <h2 class="text-center mb-4 fw-bold">Encuentra los alojamientos que van más contigo</h2>
+
+        <!-- Formulario de reservación -->
+        <form id="formReservacion" class="row g-3 align-items-end justify-content-center">
+            <!-- Ciudad o Pais -->
+            <div class="col-md-3">
+                <label for="ubicacion" class="form-label">Coiudad o País</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+                    <input type="text" class="form-control" id="ubicacion" placeholder="Ej: París, Francia">
+                </div>
+            </div>
+
+            <!-- Fecha de inicio -->
+            <div class="col-md-2">
+                <label for="fechaInicio" class="form-label">Fecha de inicio</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-calender-event"></i></span>
+                    <input type="date" class="form-control" id="fechaInicio">
+                </div>
+            </div>
+
+            <!-- Fecha de fin -->
+            <div class="col-md-2">
+                <label for="fechaFin" class="form-label">Fecha de fin</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-calendar-check"></i></span>
+                    <input type="date" class="form-control" id="fechaFin">
+                </div>
+            </div>
+
+            <!-- Adultos -->
+            <div class="col-md-2">
+                <label for="adultos" class="form-label">Adultos</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                    <input type="number" class="form-control" id="adultos" min="1" value="0">
+                </div>
+            </div>
+
+            <!-- Niños -->
+            <div class="col-md-2">
+            <label for="ninos" class="form-label">Niños</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-emoji-smile-fill"></i></span>
+                <input type="number" class="form-control" id="ninos" min="1" value="0">
+            </div>
+            </div>
+
+            <!-- Habitaciones -->
+            <div class="col-md-2">
+                <label for="habitaciones" class="form-label">Habitaciones</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-door-closed-fill"></i></span>
+                    <input type="number" class="form-control" id="habitaciones" min="1" value="0" required>
+                </div>
+            </div>
+
+            <!-- Invitaciones -->
+            <div class="col-md-3">
+                <label for="mascotas" class="form-label">¿Viaja con mascotas?</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-patch-plus-fill"></i></span>
+                    <select class="form-select" id="mascotas">
+                        <option value="no">No</option>
+                        <option value="si">Sí</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Botón buscar -->
+            <div class="col-md-12 text-center mt-3">
+                <button id="btnBuscar" type="submit" class="btn btn-primary px-4">
+                    <i class="bi bi-search"></i> Buscar
+                </button>
+            </div>
+        </form>
+
+        <!-- Mapa -->
+        <section class="container py-5 text-center">
+            <h3 class="mb-4 fw-bold">Explora hoteles en el mapa</h3>
+            <div class="position-relative d-inline-block">
+                <img src="../img/maps.webp" alt="Mapa" class="img-fluid rounded shadow" style="max-height: 400px; width: 100%; object-fit: cover;">
+                <button id="btnMapa" class="btn btn-primary position-absolute top-50 start-50 translate-middle">Ver hoteles en el mapa</button>
+            </div>
+        </section>
+
+        <!-- Cards -->
+        <section class="container py-5">
+            <h3 class="text-center fw-bold mb-5">Hoteles recomendados</h3>
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                <!-- CARD HOTEL - repite 8 veces -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="../img/hotel1.webp" class="card-img-top" alt="Hotel 1">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Hotel Paraíso</h5>
+                            <p class="card-text"><i class="bi bi-geo-alt-fill text-danger">Madrid, España</i></p>
+                            <h6 class="text-primary">$120</h6>
+                            <p class="text-muted">por noche</p>
+                            <button id="btnReservar" class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#reservaModal">Hacer Reservacion</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="../img/hotel2.webp" class="card-img-top" alt="Hotel 2">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Hotel Degli Aranci</h5>
+                            <p class="card-text"><i class="bi bi-geo-alt-fill text-danger">Roma, Italia</i></p>
+                            <h6 class="text-primary">$318</h6>
+                            <p class="text-muted">por noche</p>
+                            <button id="btnReservar" class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#reservaModal">Hacer Reservacion</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="../img/hotel3.webp" class="card-img-top" alt="Hotel 3">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Bahia Principe Grand Samana</h5>
+                            <p class="card-text"><i class="bi bi-geo-alt-fill text-danger">Las Galeras, República Dominicana</i></p>
+                            <h6 class="text-primary">$127</h6>
+                            <p class="text-muted">por noche</p>
+                            <button id="btnReservar" class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#reservaModal">Hacer Reservacion</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="../img/hotel4.webp" class="card-img-top" alt="Hotel 4">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Hotel Tamarindo Diria Beach Resort</h5>
+                            <p class="card-text"><i class="bi bi-geo-alt-fill text-danger">Playa Tamarindo, Costa Rica</i></p>
+                            <h6 class="text-primary">$149</h6>
+                            <p class="text-muted">por noche</p>
+                            <button id="btnReservar" class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#reservaModal">Hacer Reservacion</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="../img/hotel5.webp" class="card-img-top" alt="Hotel 5">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Barceló San José</h5>
+                            <p class="card-text"><i class="bi bi-geo-alt-fill text-danger">San José, Costa Rica</i></p>
+                            <h6 class="text-primary">$78</h6>
+                            <p class="text-muted">por noche</p>
+                            <button id="btnReservar" class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#reservaModal">Hacer Reservacion</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="../img/hotel6.webp" class="card-img-top" alt="Hotel 6">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Iberostar Selection Sábila</h5>
+                            <p class="card-text"><i class="bi bi-geo-alt-fill text-danger">Costa Adeje, España</i></p>
+                            <h6 class="text-primary">$295</h6>
+                            <p class="text-muted">por noche</p>
+                            <button id="btnReservar" class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#reservaModal">Hacer Reservacion</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="../img/hotel7.webp" class="card-img-top" alt="Hotel 7">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Renaissance Wind Creek Curacao Resort</h5>
+                            <p class="card-text"><i class="bi bi-geo-alt-fill text-danger">Willemstad, Curazao</i></p>
+                            <h6 class="text-primary">$157</h6>
+                            <p class="text-muted">por noche</p>
+                            <button id="btnReservar" class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#reservaModal">Hacer Reservacion</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="../img/hotel8.webp" class="card-img-top" alt="Hotel 8">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Melia Las Antillas</h5>
+                            <p class="card-text"><i class="bi bi-geo-alt-fill text-danger">Varadero, Cuba</i></p>
+                            <h6 class="text-primary">$99</h6>
+                            <p class="text-muted">por noche</p>
+                            <button id="btnReservar" class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#reservaModal">Hacer Reservacion</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESERVAR -->
+        <section class="container py-5">
+            <h3 class="text-center fw-bold mb-4">Descubre el mejor momento para reservar tu próxima estancia</h3>
+
+            <!-- Botones de ciudades -->
+            <div class="d-flex justify-content-center flex-wrap gap-3 mb-4">
+                <button class="btn btn-outline-secondary ciudad-btn" data-ciudad="paris">París</button>
+                <button class="btn btn-outline-secondary ciudad-btn" data-ciudad="nueva-york">Nueva York</button>
+                <button class="btn btn-outline-secondary ciudad-btn" data-ciudad="tokio">Tokio</button>
+                <button class="btn btn-outline-secondary ciudad-btn" data-ciudad="buenos-aires">Buenos Aires</button>
+            </div>
+
+            <!-- Caja de precios por mes -->
+            <div class="border rounded p-4 bg-light">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-md-6">
+                        <h5 class="mb-0">📅 Agosto</h5>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <span id="precio-agosto" class="fw-bold text-success">$150 - $350</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-md-6">
+                        <h5 class="mb-0">📅 Septiembre</h5>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <span id="precio-septiembre" class="fw-bold text-danger">$300 - $600</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-md-6">
+                        <h5 class="mb-0">📅 Octubre</h5>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <span id="precio-octubre" class="fw-bold text-success">$300 - $250</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-md-6">
+                        <h5 class="mb-0">📅 Noviembre</h5>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <span id="precio-noviembre" class="fw-bold text-danger">$400 - $350</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-md-6">
+                        <h5 class="mb-0">📅 Diciembre</h5>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <span id="precio-diciembre" class="fw-bold text-success">$420 - $550</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal fade" id="reservaModal" tabindex="-1" aria-labelledby="reservaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reservaModalLabel">Resumen de tu reservación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <p><strong>Ciudad:</strong> España, Madird</p>
+                    <p><strong>Fecha de inicio:</strong> 2025-08-10</p>
+                    <p><strong>Fecha de fin:</strong> 2025-08-15</p>
+                    <p><strong>Adultos:</strong> 2</p>
+                    <p><strong>Niños:</strong> 1</p>
+                    <p><strong>Habitaciones:</strong> 1</p>
+                    <p><strong>Viaja con mascota:</strong> Sí</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button id="btnConfirmar" type="button" class="btn btn-primary">Confirmar Reservación</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-primary text-white text-center py-3">
+        <div class="container">
+            <small>&copy; 2025 Viajes Mundo. Todos los derechos reservados.</small>
+        </div>
+    </footer>
+
+    <script src="js/reservacion.js"></script>
+</body>
+</html>
